@@ -1,0 +1,209 @@
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body, html {
+  height: 100%;
+  background: #f7d9e3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  flex-direction: column;
+}
+.container {
+  position: relative;
+  width: 220px;
+  height: 300px;
+}
+.layer {
+  position: absolute;
+  left: 50%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transform: translateX(-50%) translateY(-500px);
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+.bottom {
+  width: 200px;
+  height: 60px;
+  bottom: 0;
+  background: #ff6699;
+  animation: dropBottom 0.8s ease forwards;
+  animation-delay: 0s;
+}
+.middle {
+  width: 160px;
+  height: 50px;
+  bottom: 60px;
+  background: #ff99aa;
+  animation: dropMiddle 0.8s ease forwards;
+  animation-delay: 0.9s;
+}
+.top {
+  width: 120px;
+  height: 40px;
+  bottom: 110px;
+  background: #ffc0cb;
+  animation: dropTop 0.8s ease forwards;
+  animation-delay: 1.8s;
+}
+@keyframes dropBottom {
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+@keyframes dropMiddle {
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+@keyframes dropTop {
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+.candle {
+  position: absolute;
+  width: 10px;
+  height: 35px;
+  background: white;
+  border-radius: 5px;
+  left: 50%;
+  bottom: 150px;
+  transform: translateX(-50%) translateY(50px);
+  opacity: 0;
+  animation: candleRise 0.6s ease forwards;
+  animation-delay: 2.7s;
+  box-shadow: 0 0 8px #fff;
+  z-index: 10;
+}
+@keyframes candleRise {
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+.flame {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  background: orange;
+  border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 0 8px orange);
+  animation: flicker 0.3s infinite alternate;
+  opacity: 0;
+  animation-delay: 3.3s;
+  animation-fill-mode: forwards;
+}
+.flame.show { opacity: 1; }
+
+@keyframes flicker {
+  from { transform: translateX(-50%) scale(1); opacity: 1; filter: drop-shadow(0 0 10px orange); }
+  to   { transform: translateX(-50%) scale(1.2); opacity: 0.8; filter: drop-shadow(0 0 20px orange); }
+}
+
+.message {
+  margin-top: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ff3399;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: messageAppear 0.8s ease forwards;
+  animation-delay: 4.5s;
+  text-align: center;
+  user-select: none;
+}
+@keyframes messageAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.soplar-box {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: white;
+  padding: 12px 16px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 4.5s;
+  z-index: 50;
+}
+.soplar-box button {
+  background: #ff3399;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.soplar-box button:hover {
+  background: #cc297a;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: white;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  text-align: center;
+  padding: 20px;
+}
+.overlay.show {
+  display: flex;
+  animation: fadeInBlack 1s ease forwards;
+}
+.overlay h1 {
+  font-size: 26px;
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: textShow 1s ease forwards;
+  animation-delay: 2s;
+}
+.overlay a {
+  color: #ffddee;
+  font-size: 18px;
+  margin: 5px;
+  text-decoration: underline;
+  opacity: 0;
+  animation: textShow 1s ease forwards;
+  animation-delay: 2.2s;
+}
+@keyframes fadeInBlack {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes textShow {
+  to { opacity: 1; }
+}
